@@ -1,0 +1,317 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{placeins}
+\usepackage{tcolorbox} %creates color boxes around text or equation
+\usepackage{color} %can change the color of the letters
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{caption}
+\usepackage{subcaption}
+ % make it possible to include more than one captioned figure/table in a single float
+
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage[abs]{overpic}
+\usepackage{wasysym}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\allowdisplaybreaks
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% APPENDIX
+\usepackage[toc,page]{appendix}
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+\usepackage[abs]{overpic}
+\usepackage{wasysym}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+% Dirac notation shortcuts
+\newcommand{\bra}[1]{\left \langle #1\right|} 
+\newcommand{\ket}[1]{\left| #1  \right \rangle}
+\newcommand{\braket}[2]{\left \langle  #1 | #2 \right \rangle}
+\newcommand{\exc}[3]{\left \langle  #1 \left| #2 \right| #3 \right \rangle}
+
+\newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+\newcommand{\proj}[1]{\ketbra{#1}{#1}}
+
+\newcommand{\1}{{\rm 1\hspace*{-0.38ex}%
+\rule{0.1ex}{1.52ex}\hspace*{0.2ex}}}
+
+% Average brackets
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+% Hermitian and complex conjugate shortcuts
+\newcommand{\h}[1]{{#1}^{\dagger}} 
+\newcommand{\cc}[1]{{#1}^{*}}
+\newcommand{\cb}[1]{\bar{#1}}
+
+% Up and down arrows for spin
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\bk}{\vec{k}}
+\newcommand{\nv}[1]{\widehat{#1}}
+
+%differentiate something
+\newcommand{\totaldel}[2]{\frac{d #1}{d #2}}
+\newcommand{\partialdel}[2]{\frac{\del #1}{\del #2}}
+
+% Gradient (with vector arrow)
+\newcommand{\grad}{\vec{\nabla}}
+\newcommand{\del} {\partial}
+
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\Rz}{R_z\left(\frac{\pi}{2}\right)}
+\newcommand{\tr}{{\rm tr}}
+
+
+%ew command that makes a blue comment from Victor
+\newcommand{\viccom}[1]{\color{blue} (#1) \color{black}}
+
+%new command that references an appendix
+\newcommand{\refapp}[1]{appendix \ref{#1}}
+
+
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Tips and Tricks in Physics}
+\author{Victor Drouin-Touchette}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+
+%\begin{multicols}{2}
+\tableofcontents
+%\end{multicols}
+
+\section{Gaussian integral} \label{laplaceTrans}
+
+\begin{align}
+\int dx\; \exp{(-ax^2)}&= \sqrt{\frac{\pi}{a}} \\
+\int dx\; \exp{(-ax^2+bx+c)}&= \sqrt{\frac{\pi}{a}} \exp{(\frac{b^2}{4a}+c)}
+\end{align}
+
+Let 
+
+\begin{equation}
+I_n (a) = \int\limits_0^{\infty} e^{-a x^2} x^n dx
+\end{equation}
+
+Then we have
+
+\begin{equation}
+\int\limits_0^{\infty} e^{-a x^2} x^n dx = \begin{dcases}
+    \frac{(n-1)!!}{2^{n/2 +1} a^{n/2}} \sqrt{\frac{\pi}{a} }& \text{for} \: n \:\text{odd}\\        \frac{((n-1)/2)!}{2 a^{(n+1)/2}} & \text{for} \: n \: \text{even}       
+\end{dcases}
+\end{equation}
+
+with important cases
+
+\begin{align}
+I_0(a) &= \frac{1}{2} \sqrt{\frac{\pi}{a}} \\
+I_1(a) &= \frac{1}{2a}  \\
+I_0(a) &= \frac{1}{4a} \sqrt{\frac{\pi}{a}} \\
+I_0(a) &= \frac{1}{2a^2} 
+\end{align}
+
+\section{Bogoliubov transformation}
+
+The Bogoliubov transformation is very useful to diagonalize bilinear hamiltonians in systems such as sperconductivity, superfluids and antiferromagnets (spin wave). 
+
+\paragraph{Fermions}
+
+Consider the following hamiltonian with $\lambda$ real:
+
+\begin{equation}
+H= \epsilon (\h{c_1}c_1 + \h{c_2} c_2) + \lambda ((\h{c_1}\h{c_2 }+ c_2 c_1)
+\end{equation}
+
+We introduce the Bogoliubov transformations as:
+\begin{align}
+\h{c_1}&= u \h{d_1} +v d_2 \\
+\h{c_2}&= u \h{d_2} -v d_1 
+\end{align}
+
+The requirement that the canonical anti-commutation relations still be satisfied implies that $u= \cos{\theta}$ and $v=\sin{\theta}$, having then $u^2+v^2 =1$. Using this transformation gives us the following diagonalized hamiltonian:
+
+\begin{equation}
+H= \tilde{\epsilon} (\h{d_1}d_1 + \h{d_2} d_2) + \epsilon - \tilde{\epsilon}
+\end{equation}
+
+with $\tilde{\epsilon} = \sqrt{\epsilon^2 + \lambda^2}$. 
+
+\paragraph{Bosons}
+
+Consider the same hamiltonian with $\lambda$ real:
+
+\begin{equation}
+H= \epsilon (\h{c_1}c_1 + \h{c_2} c_2) + \lambda ((\h{c_1}\h{c_2 }+ c_2 c_1)
+\end{equation}
+
+We introduce the Bogoliubov transformations as:
+\begin{align}
+\h{c_1}&= u \h{d_1} +v d_2 \\
+\h{c_2}&= u \h{d_2} +v d_1 
+\end{align}
+
+The requirement that the canonical anti-commutation relations still be satisfied implies that $u= \cosh{\theta}$ and $v=\sinh{\theta}$, having then $u^2-v^2 =1$. Using this transformation gives us the following diagonalized hamiltonian:
+
+\begin{equation}
+H= \tilde{\epsilon} (\h{d_1}d_1 + \h{d_2} d_2) - \epsilon + \tilde{\epsilon}
+\end{equation}
+
+with $\tilde{\epsilon} = \sqrt{\epsilon^2 - \lambda^2}$. 
+
+\textbf{Note}: The bosonic transformation requires $\epsilon > \lambda$ for a stable equilibrium.
+
+\section{Gamma function}
+
+The Gamma function is an extension of the factorial. We have the recursive relation:
+
+\begin{equation}
+\Gamma(z) = \frac{\Gamma(z+1)}{z}
+\end{equation}
+
+Its formal definition is 
+
+\begin{equation}
+\Gamma(z) = \int\limits_0^{\infty} x^{z-1} e^{-x} dx
+\end{equation}
+
+\section{Laplace transform} \label{laplaceTrans}
+
+
+
+\section{Legendre transforms} \label{legendreTrans}
+
+\paragraph{General definition}
+
+For a one dimensional function of $f(x)$, the Legendre transform is defined as the relationship $\{F,x\} \leftrightarrow \{G,s\}$, where $s(x) \equiv \totaldel{F(x)}{x}$. The Legendre transform is then defined as 
+
+\begin{equation}
+G(s)=s \cdot x(s) - F(x(s))
+\end{equation}
+
+such that $x(s) = \totaldel{G(s)}{s}$.The Legendre transform of the function $F(x)$  is a more useful encoding of the information when the conditions of:
+
+\begin{itemize}
+\item Strict convexity (second derivative always positive) and smoothness;
+\item Easier to measure, control or think about the derivative of $F$ than to measure $x$ itself.
+\end{itemize}
+
+The condition of convexity allows for a one-to-one mapping between the  $\{F,x\} $ and $ \{G,s\}$. \textbf{ \lbrack For more information and a more explicit geometric derivation, see arXiv:0806.1147v2. \rbrack}
+
+\paragraph{Example in 1D clasical spin system}
+
+In a classical spin system (the spin at position $\textbf{r}$ is $\textbf{S}(\textbf{r})$), the partition function of the system can be writen in term of the Helmholtz free energy $F(\bf{B})$
+\begin{equation}
+Z(B)=e^{-\beta F(\bf{B})}
+\end{equation}
+
+with an external magnetic field $\bf{B}$, in this case the probe of our system. The magnetization density of the system is therefore
+
+\begin{equation}
+\textbf{m} =\frac{1}{V} \int d^d r \avg{\textbf{S}(\textbf{r})} = - \frac{1}{V} \partialdel{F(\textbf{B})}{\textbf{B}} 
+\end{equation}
+
+In such a case, the Gibbs free energy is the Legendre transform of the Helmholtz free energy:
+
+\begin{equation}
+G(\textbf{m})=F(\textbf{B}(\textbf{m})) + V \textbf{m} \cdot  \textbf{B}(\textbf{m})
+\end{equation}
+
+where we have inverted the relation $\textbf{m}=\textbf{m}(\textbf{B})$ in order to get $\textbf{B}=\textbf{B}(\textbf{m})$. Furthermore, the Gibbs free energy satisfies
+
+\begin{equation}
+\partialdel{G(\textbf{m})}{\textbf{m}}=V\textbf{B}
+\end{equation}
+
+Both functions contain the same physical information, albeit in a different point of view. The Gibbs free energy is however more interesting in the case of thermodynamic equilibrium, with the magnitization of the system being obtained when the Gibbs free energy is stationary (in the absence of an external field, $\textbf{B}=0$). 
+
+If the magnetic probe $\textbf{B}$ is varying in space, it gives rise to a spatially non-uniform magnetization, and  $F\lbrack \textbf{B}\rbrack$ and $G\lbrack \textbf{m}\rbrack$ are now functionals of those fields. The equations are the same (with an integral over all space for the coupling of $\textbf{m}$ and $\textbf{B}(\textbf{m})$), but with functional derivatives instead of classical partial derivatives. 
+
+
+\section{Fourier transforms} \label{fourierTrans}
+
+
+We can write integrals in $x$ and $q$ spaces (in $d$-dimension) as:
+
+\begin{equation}
+\int_x = \int d^d x \qquad , \qquad \int_q = \frac{d^d q}{(2 \pi)^d}
+\end{equation}
+
+The Fourier transform is then defined as:
+
+\begin{equation}
+f(x) = \int_q \tilde{f}(q) e^{\imath q x}  \qquad , \qquad \tilde{f}(x) = \int_x f(x) e^{-\imath q x} 
+\end{equation}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!blue]
+\paragraph{Important Fourier Transforms}
+\begin{itemize}
+\item Let $g(x) = \nabla f(x)$, then $\mathcal{F}_g (k) = \imath k \tilde{f}(k)$ (\textit{by integration by parts}).
+\item Let $h(x) = \nabla^2 f(x)$, then $\mathcal{F}_h (k) = - k^2 \tilde{f}(k)$
+\end{itemize}
+\end{tcolorbox}
+
+
+
+
+\end{document}
+
+
+
+

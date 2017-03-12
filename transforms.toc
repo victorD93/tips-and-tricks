@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Gaussian integral}{1}{section.1}
+\contentsline {section}{\numberline {2}Bogoliubov transformation}{2}{section.2}
+\contentsline {paragraph}{Fermions}{2}{section*.2}
+\contentsline {paragraph}{Bosons}{2}{section*.3}
+\contentsline {section}{\numberline {3}Gamma function}{3}{section.3}
+\contentsline {section}{\numberline {4}Laplace transform}{3}{section.4}
+\contentsline {section}{\numberline {5}Legendre transforms}{3}{section.5}
+\contentsline {paragraph}{General definition}{3}{section*.4}
+\contentsline {paragraph}{Example in 1D clasical spin system}{3}{section*.5}
+\contentsline {section}{\numberline {6}Fourier transforms}{4}{section.6}
+\contentsline {paragraph}{Important Fourier Transforms}{4}{section*.6}
